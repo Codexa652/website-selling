@@ -1,0 +1,225 @@
+:root {
+    --primary-color: #2563EB; /* Bright Blue */
+    --primary-hover: #1D4ED8;
+    --text-dark: #111827;
+    --text-light: #4B5563;
+    --bg-light: #F3F4F6;
+    --bg-white: #FFFFFF;
+    --border: #E5E7EB;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+h1, h2, h3 { color: var(--text-dark); }
+a { text-decoration: none; color: inherit; }
+
+/* Buttons */
+.btn {
+    padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 1rem;
+    cursor: pointer; transition: all 0.2s ease; border: none; display: inline-block;
+}
+.btn-small { padding: 8px 16px; font-size: 0.9rem; }
+.btn-primary { background-color: var(--primary-color); color: var(--bg-white); }
+.btn-primary:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+.btn-outline { background-color: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); }
+.btn-outline:hover { background-color: var(--primary-color); color: var(--bg-white); transform: translateY(-2px); }
+
+/* Navbar */
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 5%; background-color: var(--bg-white);
+    border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000;
+}
+.logo { font-size: 1.5rem; font-weight: 800; }
+.logo span { color: var(--primary-color); }
+.nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
+.nav-links a:hover { color: var(--primary-color); }
+
+/* Hero */
+.hero { text-align: center; padding: 120px 20px; background-color: var(--bg-white); }
+.hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; letter-spacing: -1px; }
+.hero-content p { font-size: 1.2rem; color: var(--text-light); max-width: 650px; margin: 0 auto 30px; }
+.hero-buttons { display: flex; gap: 15px; justify-content: center; }
+
+/* Features Section */
+.features-section, .about-section, .faq-section { padding: 80px 5%; text-align: center; }
+.features-section h2, .about-section h2, .faq-section h2 { font-size: 2.2rem; margin-bottom: 40px; }
+.feature-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;
+}
+.feature-box {
+    background: var(--bg-white); padding: 30px; border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid var(--border);
+}
+.feature-box h3 { margin-bottom: 10px; color: var(--primary-color); }
+
+/* Projects & Filters */
+.projects-section { padding: 80px 5%; text-align: center; background-color: var(--bg-white); }
+.projects-section h2 { font-size: 2.2rem; margin-bottom: 20px; }
+.filter-container { margin-bottom: 40px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.filter-btn {
+    background: var(--bg-light); border: none; padding: 8px 20px; border-radius: 20px;
+    cursor: pointer; font-weight: 600; color: var(--text-light); transition: 0.3s;
+}
+.filter-btn.active, .filter-btn:hover { background: var(--primary-color); color: var(--bg-white); }
+
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.card {
+    background: var(--bg-white); border-radius: 12px; overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); border: 1px solid var(--border);
+    transition: transform 0.3s, opacity 0.3s; text-align: left;
+}
+.card.hide { display: none; }
+.card-img { height: 200px; width: 100%; border-bottom: 1px solid var(--border); }
+.card-content { padding: 25px; }
+.tag { background: #DBEAFE; color: var(--primary-color); padding: 5px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; }
+.card h3 { margin: 15px 0 10px; font-size: 1.3rem; }
+.card p { color: var(--text-light); font-size: 0.95rem; margin-bottom: 25px; }
+.card-footer { display: flex; justify-content: space-between; align-items: center; }
+.price { font-size: 1.4rem; font-weight: 800; color: var(--text-dark); }
+
+/* About */
+.about-content { max-width: 800px; margin: 0 auto; font-size: 1.1rem; color: var(--text-light); }
+.about-content p { margin-bottom: 15px; }
+
+/* FAQ Accordion */
+.faq-section { background-color: var(--bg-white); }
+.faq-container { max-width: 700px; margin: 0 auto; text-align: left; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 15px 0; }
+.faq-question {
+    width: 100%; text-align: left; background: none; border: none;
+    font-size: 1.1rem; font-weight: 600; color: var(--text-dark); cursor: pointer;
+    padding: 10px 0; display: flex; justify-content: space-between; align-items: center;
+}
+.faq-question::after { content: '+'; font-size: 1.5rem; color: var(--primary-color); transition: 0.3s; }
+.faq-item.active .faq-question::after { content: '−'; transform: rotate(180deg); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+.faq-item.active .faq-answer { max-height: 200px; /* Adjust if content is very long */ }
+.faq-answer p { padding-bottom: 15px; color: var(--text-light); }
+
+/* Contact & Footer */
+.contact-section { padding: 80px 5%; text-align: center; }
+.contact-form { max-width: 500px; margin: 40px auto 0; text-align: left; background: var(--bg-white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid var(--border); }
+.input-group { margin-bottom: 20px; }
+.input-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+.input-group input, .input-group textarea { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; background: var(--bg-light); }
+.input-group input:focus, .input-group textarea:focus { outline: none; border-color: var(--primary-color); background: var(--bg-white); }
+footer { background: var(--text-dark); color: var(--bg-white); text-align: center; padding: 40px 20px 20px; }
+.footer-content { margin-bottom: 20px; }
+.footer-content .logo span { color: #93C5FD; }
+.copyright { color: #9CA3AF; font-size: 0.9rem; border-top: 1px solid #374151; padding-top: 20px; }
+
+/* --- NEW: Pricing Section Styles --- */
+.pricing-section {
+    padding: 80px 5%;
+    text-align: center;
+    background-color: var(--bg-light);
+}
+
+.pricing-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.pricing-section p {
+    color: var(--text-light);
+    margin-bottom: 50px;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background: var(--bg-white);
+    border-radius: 12px;
+    padding: 40px 30px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    position: relative;
+    transition: transform 0.3s;
+    text-align: center;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+}
+
+.pricing-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.plan-price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+}
+
+.plan-price span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-light);
+}
+
+.plan-features {
+    list-style: none;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.plan-features li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.plan-features li:last-child {
+    border-bottom: none;
+}
+
+.block-btn {
+    display: block;
+    width: 100%;
+}
+
+/* Popular Plan Highlight */
+.pricing-card.popular {
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.15);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-color);
+    color: var(--bg-white);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/* Instagram Button Specifics */
+.insta-btn {
+    border-color: #E1306C; /* Instagram Pink/Red */
+    color: #E1306C;
+}
+.insta-btn:hover {
+    background-color: #E1306C;
+    border-color: #E1306C;
+    color: var(--bg-white);
+}
+
+.social-links {
+    margin-top: 20px;
+}
