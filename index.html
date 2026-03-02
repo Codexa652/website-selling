@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GradeBoost Projects | Score Higher. Stress Less.</title>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
       :root {
@@ -36,6 +34,21 @@
         overflow-x: hidden;
       }
 
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--primary);
+      }
+
       /* Typography & Layout */
       section {
         padding: 100px 8%;
@@ -43,24 +56,21 @@
         margin: 0 auto;
       }
 
-      .text-center {
-        text-align: center;
-      }
-      .mb-2 {
-        margin-bottom: 20px;
-      }
-      .mb-6 {
-        margin-bottom: 60px;
-      }
+      .text-center { text-align: center; }
+      .mb-2 { margin-bottom: 20px; }
+      .mb-6 { margin-bottom: 60px; }
 
       h1 {
-        font-size: 52px;
+        font-size: clamp(36px, 5vw, 56px);
         font-weight: 800;
         line-height: 1.2;
         margin-bottom: 25px;
+        background: linear-gradient(to right, #fff, #a8a8c0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
       h2 {
-        font-size: 38px;
+        font-size: clamp(28px, 4vw, 38px);
         margin-bottom: 20px;
         font-weight: 700;
       }
@@ -79,20 +89,20 @@
         padding-left: 20px;
         color: var(--muted);
       }
-      li {
-        margin-bottom: 10px;
-      }
+      li { margin-bottom: 10px; }
 
       /* Buttons */
       .btn {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
         padding: 16px 34px;
         border-radius: 60px;
         text-decoration: none;
         font-weight: 600;
         transition: all 0.3s ease;
         cursor: pointer;
-        text-align: center;
         border: none;
         font-family: inherit;
         font-size: 16px;
@@ -107,13 +117,14 @@
         box-shadow: 0 0 35px rgba(127, 90, 240, 0.8);
       }
       .btn-outline {
-        background: transparent;
+        background: rgba(255, 255, 255, 0.02);
         border: 2px solid var(--primary);
         color: #fff;
       }
       .btn-outline:hover {
         background: var(--primary);
         box-shadow: 0 0 20px rgba(127, 90, 240, 0.4);
+        transform: translateY(-3px);
       }
 
       /* Navbar */
@@ -125,11 +136,12 @@
         -webkit-backdrop-filter: blur(20px);
         background: rgba(15, 15, 26, 0.8);
         border-bottom: 1px solid var(--border);
-        padding: 20px 8%;
+        padding: 15px 8%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         z-index: 1000;
+        transition: 0.3s;
       }
       .navbar h2 {
         font-size: 24px;
@@ -149,8 +161,16 @@
         font-weight: 500;
         transition: 0.3s;
       }
-      .nav-links a:hover {
-        color: var(--secondary);
+      .nav-links a:hover { color: var(--secondary); }
+      
+      /* Mobile Menu Toggle */
+      .menu-btn {
+        display: none;
+        font-size: 24px;
+        color: #fff;
+        cursor: pointer;
+        background: none;
+        border: none;
       }
 
       /* Hero Section */
@@ -168,28 +188,30 @@
       .stats {
         display: flex;
         justify-content: center;
-        gap: 80px;
-        margin-top: 60px;
+        gap: 60px;
+        margin-top: 80px;
         flex-wrap: wrap;
       }
       .stat {
         text-align: center;
+        background: var(--card);
+        border: 1px solid var(--border);
+        padding: 20px 40px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
       }
       .stat h3 {
         font-size: 38px;
         color: var(--secondary);
         margin-bottom: 5px;
       }
-      .stat p {
-        margin: 0;
-        font-weight: 500;
-      }
+      .stat p { margin: 0; font-weight: 500; }
 
-      /* Pricing Grid */
+      /* Grids & Cards */
       .grid {
         display: grid;
         gap: 30px;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       }
       .card {
         background: var(--card);
@@ -202,6 +224,7 @@
         justify-content: space-between;
         transition: 0.4s;
         position: relative;
+        overflow: hidden;
       }
       .card:hover {
         transform: translateY(-8px);
@@ -213,6 +236,15 @@
         background: rgba(127, 90, 240, 0.05);
         box-shadow: 0 0 30px rgba(127, 90, 240, 0.2);
       }
+      /* Optional Glow effect on Advance card */
+      .highlight::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -50%; width: 200%; height: 200%;
+        background: radial-gradient(circle, rgba(127,90,240,0.1) 0%, rgba(0,0,0,0) 70%);
+        z-index: -1;
+      }
+      
       .price {
         font-size: 36px;
         font-weight: 700;
@@ -226,10 +258,7 @@
         border-radius: 12px;
         font-size: 14px;
       }
-      .addon input {
-        accent-color: var(--primary);
-        cursor: pointer;
-      }
+      .addon input { accent-color: var(--primary); cursor: pointer; }
       .total {
         margin-top: 20px;
         font-weight: 600;
@@ -238,13 +267,32 @@
         margin-bottom: 25px;
       }
 
+      /* Portfolio Grid */
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+      }
+      .portfolio-grid .btn {
+        width: 100%;
+        padding: 20px;
+        font-size: 18px;
+        background: var(--card);
+        border-color: var(--border);
+      }
+      .portfolio-grid .btn:hover {
+        border-color: var(--primary);
+        background: rgba(127, 90, 240, 0.1);
+      }
+      .portfolio-grid i {
+        color: var(--secondary);
+        font-size: 22px;
+      }
+
       /* Custom Project Banner Section */
       .custom-banner {
-        background: linear-gradient(
-          135deg,
-          rgba(127, 90, 240, 0.1),
-          rgba(0, 212, 255, 0.05)
-        );
+        background: linear-gradient(135deg, rgba(127, 90, 240, 0.1), rgba(0, 212, 255, 0.05));
         border: 1px solid var(--primary);
         border-radius: 30px;
         padding: 60px;
@@ -254,14 +302,8 @@
         align-items: center;
         box-shadow: 0 15px 40px rgba(127, 90, 240, 0.15);
       }
-      .custom-banner-text h2 {
-        margin-bottom: 15px;
-        color: var(--secondary);
-      }
-      .custom-banner-text ul {
-        list-style: none;
-        padding: 0;
-      }
+      .custom-banner-text h2 { margin-bottom: 15px; color: var(--secondary); }
+      .custom-banner-text ul { list-style: none; padding: 0; }
       .custom-banner-text li {
         display: flex;
         align-items: center;
@@ -283,9 +325,7 @@
         border-radius: 20px;
         border: 1px solid var(--border);
       }
-      .form-group {
-        margin-bottom: 20px;
-      }
+      .form-group { margin-bottom: 20px; }
       .form-control {
         width: 100%;
         padding: 16px;
@@ -339,7 +379,7 @@
         border: 1px solid var(--border);
       }
       .countdown {
-        font-size: 32px;
+        font-size: clamp(24px, 4vw, 36px);
         color: #ff4d4d;
         margin-top: 20px;
         font-weight: 700;
@@ -367,12 +407,26 @@
         box-shadow: 0 10px 30px rgba(127, 90, 240, 0.5);
         z-index: 999;
         transition: 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
       .floating-btn:hover {
         transform: translateY(-5px) scale(1.05);
       }
 
-      /* Responsive */
+      /* Scroll Reveal Animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Responsive Adjustments */
       @media (max-width: 900px) {
         .custom-banner {
           grid-template-columns: 1fr;
@@ -380,54 +434,59 @@
         }
       }
       @media (max-width: 768px) {
-        h1 {
-          font-size: 34px;
-        }
-        h2 {
-          font-size: 28px;
-        }
-        .stats {
-          gap: 40px;
-        }
+        section { padding: 80px 5%; }
+        .menu-btn { display: block; }
+        
         .nav-links {
-          display: none;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          width: 100%;
+          background: rgba(15, 15, 26, 0.95);
+          backdrop-filter: blur(20px);
+          flex-direction: column;
+          padding: 30px 0;
+          gap: 20px;
+          border-bottom: 1px solid var(--border);
+          transform: translateY(-150%);
+          transition: transform 0.3s ease;
+          z-index: -1;
         }
+        .nav-links.mobile-active {
+          transform: translateY(0);
+        }
+        
+        .hero { padding-top: 140px; }
+        .stats { gap: 20px; flex-direction: column; }
+        .custom-banner-text li { font-size: 16px; }
+        .floating-btn { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 14px; }
       }
     </style>
   </head>
   <body>
     <nav class="navbar">
       <h2>GradeBoost</h2>
-      <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#custom">Custom Project</a>
-        <a href="#faq">FAQ</a>
-        <a
-          href="https://www.instagram.com/codexa652/"
-          target="_blank"
-          class="btn btn-primary"
-          style="padding: 10px 24px"
-          >DM Now</a
-        >
+      <button class="menu-btn" id="menuBtn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#features" onclick="closeMenu()">Features</a>
+        <a href="#portfolio" onclick="closeMenu()">Portfolio</a>
+        <a href="#pricing" onclick="closeMenu()">Pricing</a>
+        <a href="#custom" onclick="closeMenu()">Custom Project</a>
+        <a href="#faq" onclick="closeMenu()">FAQ</a>
+        <a href="https://www.instagram.com/codexa652/" target="_blank" class="btn btn-primary" style="padding: 10px 24px">DM Now</a>
       </div>
     </nav>
 
-    <section class="hero">
+    <section class="hero reveal">
       <h1>🎓 Score Higher. Stress Less.<br />Submit Projects That Impress.</h1>
       <p>
         Professional HTML, CSS, JS & Firebase academic projects built
         specifically for fast, hassle-free university submissions.
       </p>
 
-      <div
-        style="
-          display: flex;
-          gap: 20px;
-          justify-content: center;
-          flex-wrap: wrap;
-        "
-      >
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
         <a href="#pricing" class="btn btn-primary">🔥 View Pricing</a>
         <a href="#custom" class="btn btn-outline">Request Custom Project</a>
       </div>
@@ -444,7 +503,7 @@
       </div>
     </section>
 
-    <section id="features">
+    <section id="features" class="reveal">
       <h2 class="text-center mb-6">Why Students Choose GradeBoost</h2>
       <div class="grid">
         <div class="card">
@@ -471,7 +530,24 @@
       </div>
     </section>
 
-    <section id="pricing">
+    <section id="portfolio" class="reveal" style="padding-top: 40px;">
+      <h2 class="text-center">Live Preview Portfolio</h2>
+      <p class="text-center mb-6">Check out some of my recent premium project builds below.</p>
+      
+      <div class="portfolio-grid">
+        <a href="https://codexa652.github.io/iphone-website/" target="_blank" class="btn btn-outline">
+          <i class="fa-brands fa-apple"></i> IPHONE Website
+        </a>
+        <a href="https://codexa652.github.io/clothes-website/" target="_blank" class="btn btn-outline">
+          <i class="fa-solid fa-shirt"></i> Clothes Website
+        </a>
+        <a href="https://codexa652.github.io/watch-website/" target="_blank" class="btn btn-outline">
+          <i class="fa-solid fa-clock"></i> Watch Website
+        </a>
+      </div>
+    </section>
+
+    <section id="pricing" class="reveal">
       <h2 class="text-center mb-2">Choose Your Submission Level</h2>
       <p class="text-center mb-6">
         Pre-built, ready-to-submit projects to save your time.
@@ -489,29 +565,14 @@
               <li>Ready-to-Submit Source Files</li>
             </ul>
             <div class="addon">
-              <label
-                style="
-                  cursor: pointer;
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
-                "
-              >
-                <input
-                  type="checkbox"
-                  onchange="updateTotal('basic', 700, 300)"
-                />
+              <label style="cursor: pointer; display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" onchange="updateTotal('basic', 700, 300)" />
                 Add Documentation (+₹300)
               </label>
             </div>
             <div class="total" id="total-basic">Total: ₹700</div>
           </div>
-          <a
-            href="https://www.instagram.com/codexa652/"
-            target="_blank"
-            class="btn btn-outline"
-            >Buy Basic</a
-          >
+          <a href="https://www.instagram.com/codexa652/" target="_blank" class="btn btn-outline">Buy Basic</a>
         </div>
 
         <div class="card">
@@ -525,29 +586,14 @@
               <li>Modern CSS Animations</li>
             </ul>
             <div class="addon">
-              <label
-                style="
-                  cursor: pointer;
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
-                "
-              >
-                <input
-                  type="checkbox"
-                  onchange="updateTotal('medium', 1000, 300)"
-                />
+              <label style="cursor: pointer; display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" onchange="updateTotal('medium', 1000, 300)" />
                 Add Documentation (+₹300)
               </label>
             </div>
             <div class="total" id="total-medium">Total: ₹1000</div>
           </div>
-          <a
-            href="https://www.instagram.com/codexa652/"
-            target="_blank"
-            class="btn btn-outline"
-            >Buy Medium</a
-          >
+          <a href="https://www.instagram.com/codexa652/" target="_blank" class="btn btn-outline">Buy Medium</a>
         </div>
 
         <div class="card highlight">
@@ -565,28 +611,12 @@
             </div>
             <div class="total">Total: ₹2500</div>
           </div>
-          <a
-            href="https://www.instagram.com/codexa652/"
-            target="_blank"
-            class="btn btn-primary"
-            >Secure Advance</a
-          >
+          <a href="https://www.instagram.com/codexa652/" target="_blank" class="btn btn-primary">Secure Advance</a>
         </div>
       </div>
     </section>
-    <div class="text-center flex-column" style="display: flex; align-items: center">
-      <div style="text-align: center; margin: 20px 0 60px 0; padding: 0 8%;">
-      <a href="https://codexa652.github.io/iphone-website/" target="_blank" class="btn btn-outline" style="font-size: 18px; padding: 15px 40px;">IPHONE Website</a>
-    </div>
-    <div style="text-align: center; margin: 20px 0 60px 0; padding: 0 8%;">
-      <a href="https://codexa652.github.io/clothes-website/" target="_blank" class="btn btn-outline" style="font-size: 18px; padding: 15px 40px;">Clothes Website</a>
-    </div>
 
-    <div style="text-align: center; margin: 20px 0 60px 0; padding: 0 8%;">
-      <a href="https://codexa652.github.io/watch-website/" target="_blank" class="btn btn-outline" style="font-size: 18px; padding: 15px 40px;">Watch Website</a>
-    </div>
-    </div>
-    <section id="custom">
+    <section id="custom" class="reveal">
       <div class="custom-banner">
         <div class="custom-banner-text">
           <h2>💼 Need a Fully Custom Project?</h2>
@@ -606,37 +636,15 @@
         <div class="form-container">
           <form id="projectForm" onsubmit="submitForm(event)">
             <div class="form-group">
-              <input
-                type="text"
-                id="clientName"
-                class="form-control"
-                placeholder="Your Name"
-                required
-              />
+              <input type="text" id="clientName" class="form-control" placeholder="Your Name" required />
             </div>
             <div class="form-group">
-              <input
-                type="text"
-                id="clientContact"
-                class="form-control"
-                placeholder="WhatsApp Number or Instagram ID"
-                required
-              />
+              <input type="text" id="clientContact" class="form-control" placeholder="WhatsApp Number or Instagram ID" required />
             </div>
             <div class="form-group">
-              <textarea
-                id="clientIdea"
-                class="form-control"
-                rows="4"
-                placeholder="Briefly describe your project idea..."
-                required
-              ></textarea>
+              <textarea id="clientIdea" class="form-control" rows="4" placeholder="Briefly describe your project idea..." required></textarea>
             </div>
-            <button
-              type="submit"
-              class="btn btn-primary"
-              style="width: 100%; font-size: 18px"
-            >
+            <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 18px">
               Get Free Quote
             </button>
           </form>
@@ -644,10 +652,8 @@
       </div>
     </section>
 
-    <section id="faq">
-      <h2 style="text-align: center; margin-bottom: 40px">
-        Frequently Asked Questions
-      </h2>
+    <section id="faq" class="reveal">
+      <h2 style="text-align: center; margin-bottom: 40px">Frequently Asked Questions</h2>
       <div class="faq-container">
         <div class="faq-item">
           <strong>How will I receive the project?</strong>
@@ -659,8 +665,7 @@
         </div>
         <div class="faq-item">
           <strong>Is the code beginner-friendly?</strong>
-          Yes, the code is clean, well-structured, and easy to explain during
-          vivas.
+          Yes, the code is clean, well-structured, and easy to explain during vivas.
         </div>
         <div class="faq-item">
           <strong>How fast is delivery?</strong>
@@ -668,47 +673,46 @@
         </div>
         <div class="faq-item">
           <strong>Do you provide setup help?</strong>
-          Yes, step-by-step guidance is included, especially in the Advance
-          plan.
+          Yes, step-by-step guidance is included, especially in the Advance plan.
         </div>
       </div>
     </section>
 
-    <section>
+    <section class="reveal">
       <div class="urgency">
         <h2>⏳ Limited Weekly Slots</h2>
         <p style="color: #fff; opacity: 0.8">
-          I only accept limited custom project requests each week to maintain
-          premium quality.
+          I only accept limited custom project requests each week to maintain premium quality.
         </p>
         <div class="countdown" id="countdown"></div>
-        <a
-          href="https://www.instagram.com/codexa652/"
-          target="_blank"
-          class="btn btn-primary"
-          style="margin-top: 30px"
-          >🚀 DM Before Slots Close</a
-        >
+        <a href="https://www.instagram.com/codexa652/" target="_blank" class="btn btn-primary" style="margin-top: 30px">🚀 DM Before Slots Close</a>
       </div>
     </section>
 
     <footer class="footer">
       GradeBoost Projects © 2026 | Score Higher. Stress Less.<br />
-      <span
-        style="font-size: 12px; margin-top: 10px; display: block; opacity: 0.6"
-        >Disclaimer: Projects are intended as study aids and reference materials
-        for academic learning.</span
-      >
+      <span style="font-size: 12px; margin-top: 10px; display: block; opacity: 0.6">
+        Disclaimer: Projects are intended as study aids and reference materials for academic learning.
+      </span>
     </footer>
 
-    <a
-      href="https://www.instagram.com/codexa652/"
-      target="_blank"
-      class="floating-btn"
-      >💬 Instagram DM</a
-    >
+    <a href="https://www.instagram.com/codexa652/" target="_blank" class="floating-btn">
+      <i class="fa-brands fa-instagram" style="font-size: 20px;"></i> DM Me
+    </a>
 
     <script>
+      /* Mobile Menu Toggle */
+      const menuBtn = document.getElementById('menuBtn');
+      const navLinks = document.getElementById('navLinks');
+      
+      menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('mobile-active');
+      });
+
+      function closeMenu() {
+        navLinks.classList.remove('mobile-active');
+      }
+
       /* Animated Counters */
       function animateCounter(id, target) {
         let count = 0;
@@ -721,7 +725,6 @@
       }
       window.onload = () => {
         animateCounter("counter1", 10);
-        // animateCounter("counter2", );
       };
 
       /* Pricing Toggle Logic */
@@ -737,28 +740,19 @@
         totalDisplay.innerText = `Total: ₹${finalPrice}`;
       }
 
-      /* Custom Form Submission Logic */
+      /* Custom Form Submission Logic (WhatsApp Direct) */
       function submitForm(event) {
-        event.preventDefault(); // Prevent page reload
+        event.preventDefault(); 
 
-        // Get values from the form
         const name = document.getElementById("clientName").value;
         const contact = document.getElementById("clientContact").value;
         const idea = document.getElementById("clientIdea").value;
 
-        // Format the message
         const message = `Hi Codexa! I need a custom project.%0A%0A*Name:* ${name}%0A*Contact:* ${contact}%0A*Project Idea:* ${idea}`;
-
-        // Your WhatsApp Number (Include country code, no + or spaces. Example for India: 919876543210)
         const yourWhatsAppNumber = "918097543333";
-
-        // Create WhatsApp API Link
         const whatsappLink = `https://wa.me/${yourWhatsAppNumber}?text=${message}`;
 
-        // Open WhatsApp in a new tab
         window.open(whatsappLink, "_blank");
-
-        // Reset the form
         document.getElementById("projectForm").reset();
       }
 
@@ -771,14 +765,27 @@
         const diff = deadline - now;
 
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-        );
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        countdownEl.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+        countdownEl.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
       }, 1000);
+
+      /* Scroll Reveal Animation */
+      function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+          var windowHeight = window.innerHeight;
+          var elementTop = reveals[i].getBoundingClientRect().top;
+          var elementVisible = 100;
+          if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add("active");
+          }
+        }
+      }
+      window.addEventListener("scroll", reveal);
+      reveal(); // Trigger on load
     </script>
   </body>
 </html>
