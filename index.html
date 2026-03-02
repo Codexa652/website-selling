@@ -236,7 +236,6 @@
         background: rgba(127, 90, 240, 0.05);
         box-shadow: 0 0 30px rgba(127, 90, 240, 0.2);
       }
-      /* Optional Glow effect on Advance card */
       .highlight::before {
         content: '';
         position: absolute;
@@ -475,7 +474,7 @@
         <a href="#pricing" onclick="closeMenu()">Pricing</a>
         <a href="#custom" onclick="closeMenu()">Custom Project</a>
         <a href="#faq" onclick="closeMenu()">FAQ</a>
-        <a href="https://www.instagram.com/codexa652/" target="_blank" class="btn btn-primary" style="padding: 10px 24px">DM Now</a>
+        <a href="https://ig.me/m/codexa652" target="_blank" class="btn btn-primary" style="padding: 10px 24px">DM Now</a>
       </div>
     </nav>
 
@@ -572,7 +571,7 @@
             </div>
             <div class="total" id="total-basic">Total: ₹700</div>
           </div>
-          <a href="https://www.instagram.com/codexa652/" target="_blank" class="btn btn-outline">Buy Basic</a>
+          <button onclick="buyPlan('Basic', 'total-basic')" class="btn btn-outline">Buy Basic</button>
         </div>
 
         <div class="card">
@@ -593,7 +592,7 @@
             </div>
             <div class="total" id="total-medium">Total: ₹1000</div>
           </div>
-          <a href="https://www.instagram.com/codexa652/" target="_blank" class="btn btn-outline">Buy Medium</a>
+          <button onclick="buyPlan('Medium', 'total-medium')" class="btn btn-outline">Buy Medium</button>
         </div>
 
         <div class="card highlight">
@@ -609,9 +608,9 @@
             <div class="addon" style="color: var(--secondary)">
               <strong>✓ Documentation Included Free</strong>
             </div>
-            <div class="total">Total: ₹2500</div>
+            <div class="total" id="total-advance">Total: ₹2500</div>
           </div>
-          <a href="https://www.instagram.com/codexa652/" target="_blank" class="btn btn-primary">Secure Advance</a>
+          <button onclick="buyPlan('Advance', 'total-advance')" class="btn btn-primary">Secure Advance</button>
         </div>
       </div>
     </section>
@@ -685,7 +684,7 @@
           I only accept limited custom project requests each week to maintain premium quality.
         </p>
         <div class="countdown" id="countdown"></div>
-        <a href="https://www.instagram.com/codexa652/" target="_blank" class="btn btn-primary" style="margin-top: 30px">🚀 DM Before Slots Close</a>
+        <a href="https://ig.me/m/codexa652" target="_blank" class="btn btn-primary" style="margin-top: 30px">🚀 DM Before Slots Close</a>
       </div>
     </section>
 
@@ -696,7 +695,7 @@
       </span>
     </footer>
 
-    <a href="https://www.instagram.com/codexa652/" target="_blank" class="floating-btn">
+    <a href="https://ig.me/m/codexa652" target="_blank" class="floating-btn">
       <i class="fa-brands fa-instagram" style="font-size: 20px;"></i> DM Me
     </a>
 
@@ -738,6 +737,18 @@
         }
 
         totalDisplay.innerText = `Total: ₹${finalPrice}`;
+      }
+
+      /* WhatsApp Checkout Logic (For Pricing Cards) */
+      function buyPlan(planName, totalId) {
+        const totalText = document.getElementById(totalId).innerText;
+        const message = `Hi Codexa! 🚀 I'm interested in buying the *${planName} Plan*.\n\n${totalText}\n\nHow can I make the payment?`;
+        
+        // Ensure this is your correct WhatsApp number
+        const yourWhatsAppNumber = "918097543333";
+        const whatsappLink = `https://wa.me/${yourWhatsAppNumber}?text=${encodeURIComponent(message)}`;
+        
+        window.open(whatsappLink, "_blank");
       }
 
       /* Custom Form Submission Logic (WhatsApp Direct) */
