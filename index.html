@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GradeBoost Projects | Score Higher. Stress Less.</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary: #7f5af0;
+        --secondary: #00d4ff;
+        --bg: #0f0f1a;
+        --card: rgba(255, 255, 255, 0.03);
+        --border: rgba(255, 255, 255, 0.08);
+        --text: #fff;
+        --muted: #a8a8c0;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      /* Typography & Layout */
+      section {
+        padding: 100px 8%;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+      .mb-2 {
+        margin-bottom: 20px;
+      }
+      .mb-6 {
+        margin-bottom: 60px;
+      }
+
+      h1 {
+        font-size: 52px;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 25px;
+      }
+      h2 {
+        font-size: 38px;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+      h3 {
+        font-size: 22px;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+      p {
+        color: var(--muted);
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+      ul {
+        margin: 20px 0;
+        padding-left: 20px;
+        color: var(--muted);
+      }
+      li {
+        margin-bottom: 10px;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-block;
+        padding: 16px 34px;
+        border-radius: 60px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        text-align: center;
+        border: none;
+        font-family: inherit;
+        font-size: 16px;
+      }
+      .btn-primary {
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        color: #fff;
+        box-shadow: 0 0 20px rgba(127, 90, 240, 0.4);
+      }
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 35px rgba(127, 90, 240, 0.8);
+      }
+      .btn-outline {
+        background: transparent;
+        border: 2px solid var(--primary);
+        color: #fff;
+      }
+      .btn-outline:hover {
+        background: var(--primary);
+        box-shadow: 0 0 20px rgba(127, 90, 240, 0.4);
+      }
+
+      /* Navbar */
+      .navbar {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(15, 15, 26, 0.8);
+        border-bottom: 1px solid var(--border);
+        padding: 20px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+      }
+      .navbar h2 {
+        font-size: 24px;
+        margin: 0;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .nav-links {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+      .nav-links a {
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--secondary);
+      }
+
+      /* Hero Section */
+      .hero {
+        text-align: center;
+        padding-top: 180px;
+      }
+      .hero p {
+        max-width: 700px;
+        margin: 0 auto 35px auto;
+        font-size: 18px;
+      }
+
+      /* Stats */
+      .stats {
+        display: flex;
+        justify-content: center;
+        gap: 80px;
+        margin-top: 60px;
+        flex-wrap: wrap;
+      }
+      .stat {
+        text-align: center;
+      }
+      .stat h3 {
+        font-size: 38px;
+        color: var(--secondary);
+        margin-bottom: 5px;
+      }
+      .stat p {
+        margin: 0;
+        font-weight: 500;
+      }
+
+      /* Pricing Grid */
+      .grid {
+        display: grid;
+        gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 45px 35px;
+        backdrop-filter: blur(20px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: 0.4s;
+        position: relative;
+      }
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 40px rgba(0, 212, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      .highlight {
+        border: 1px solid var(--primary);
+        background: rgba(127, 90, 240, 0.05);
+        box-shadow: 0 0 30px rgba(127, 90, 240, 0.2);
+      }
+      .price {
+        font-size: 36px;
+        font-weight: 700;
+        margin: 20px 0;
+        color: #fff;
+      }
+      .addon {
+        margin-top: 25px;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 12px;
+        font-size: 14px;
+      }
+      .addon input {
+        accent-color: var(--primary);
+        cursor: pointer;
+      }
+      .total {
+        margin-top: 20px;
+        font-weight: 600;
+        color: var(--secondary);
+        font-size: 20px;
+        margin-bottom: 25px;
+      }
+
+      /* Custom Project Banner Section */
+      .custom-banner {
+        background: linear-gradient(
+          135deg,
+          rgba(127, 90, 240, 0.1),
+          rgba(0, 212, 255, 0.05)
+        );
+        border: 1px solid var(--primary);
+        border-radius: 30px;
+        padding: 60px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+        box-shadow: 0 15px 40px rgba(127, 90, 240, 0.15);
+      }
+      .custom-banner-text h2 {
+        margin-bottom: 15px;
+        color: var(--secondary);
+      }
+      .custom-banner-text ul {
+        list-style: none;
+        padding: 0;
+      }
+      .custom-banner-text li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+        font-size: 18px;
+        color: #fff;
+      }
+      .custom-banner-text li::before {
+        content: "✓";
+        color: var(--primary);
+        font-weight: bold;
+      }
+
+      /* Minimal Form */
+      .form-container {
+        background: rgba(0, 0, 0, 0.4);
+        padding: 40px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-control {
+        width: 100%;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        font-size: 15px;
+        transition: 0.3s;
+      }
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        background: rgba(0, 0, 0, 0.6);
+      }
+
+      /* FAQ Styles */
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .faq-item {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 25px;
+        margin-bottom: 15px;
+        backdrop-filter: blur(20px);
+        transition: 0.3s;
+        color: var(--muted);
+      }
+      .faq-item:hover {
+        border-color: var(--primary);
+        transform: translateX(5px);
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .faq-item strong {
+        color: var(--secondary);
+        font-size: 18px;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      /* Urgency Banner */
+      .urgency {
+        text-align: center;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        border-radius: 30px;
+        padding: 70px 40px;
+        border: 1px solid var(--border);
+      }
+      .countdown {
+        font-size: 32px;
+        color: #ff4d4d;
+        margin-top: 20px;
+        font-weight: 700;
+        letter-spacing: 2px;
+      }
+
+      /* Footer & Utils */
+      .footer {
+        text-align: center;
+        padding: 40px 8%;
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .floating-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        padding: 16px 24px;
+        border-radius: 60px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: 0 10px 30px rgba(127, 90, 240, 0.5);
+        z-index: 999;
+        transition: 0.3s;
+      }
+      .floating-btn:hover {
+        transform: translateY(-5px) scale(1.05);
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .custom-banner {
+          grid-template-columns: 1fr;
+          padding: 40px 20px;
+        }
+      }
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 34px;
+        }
+        h2 {
+          font-size: 28px;
+        }
+        .stats {
+          gap: 40px;
+        }
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <h2>GradeBoost</h2>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#custom">Custom Project</a>
+        <a href="#faq">FAQ</a>
+        <a
+          href="https://www.instagram.com/codexa652/"
+          target="_blank"
+          class="btn btn-primary"
+          style="padding: 10px 24px"
+          >DM Now</a
+        >
+      </div>
+    </nav>
+
+    <section class="hero">
+      <h1>🎓 Score Higher. Stress Less.<br />Submit Projects That Impress.</h1>
+      <p>
+        Professional HTML, CSS, JS & Firebase academic projects built
+        specifically for fast, hassle-free university submissions.
+      </p>
+
+      <div
+        style="
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+          flex-wrap: wrap;
+        "
+      >
+        <a href="#pricing" class="btn btn-primary">🔥 View Pricing</a>
+        <a href="#custom" class="btn btn-outline">Request Custom Project</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <h3 id="counter1">0</h3>
+          <p>Projects Delivered</p>
+        </div>
+        <div class="stat">
+          <h3>2026</h3>
+          <p>Modern Frontend Stack</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2 class="text-center mb-6">Why Students Choose GradeBoost</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>📚 Academic Focused</h3>
+          <p>
+            Every project follows strict, clean coding structures suitable for
+            BCA, BSc IT, B.Tech, and Diploma vivas.
+          </p>
+        </div>
+        <div class="card">
+          <h3>⚡ Hassle-Free Setup</h3>
+          <p>
+            No messy local servers required. Code runs easily in the browser,
+            making viva presentations completely stress-free.
+          </p>
+        </div>
+        <div class="card">
+          <h3>🎯 Grade-Boosting UI</h3>
+          <p>
+            Teachers evaluate by looking. Professional UI + Clean Code = Maximum
+            marks.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <h2 class="text-center mb-2">Choose Your Submission Level</h2>
+      <p class="text-center mb-6">
+        Pre-built, ready-to-submit projects to save your time.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <div>
+            <h3>🟢 Basic</h3>
+            <div class="price">₹700</div>
+            <ul>
+              <li>Responsive HTML & CSS</li>
+              <li>Clean Beginner-Friendly Code</li>
+              <li>Single Page Layout</li>
+              <li>Ready-to-Submit Source Files</li>
+            </ul>
+            <div class="addon">
+              <label
+                style="
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                "
+              >
+                <input
+                  type="checkbox"
+                  onchange="updateTotal('basic', 700, 300)"
+                />
+                Add Documentation (+₹300)
+              </label>
+            </div>
+            <div class="total" id="total-basic">Total: ₹700</div>
+          </div>
+          <a
+            href="https://www.instagram.com/codexa652/"
+            target="_blank"
+            class="btn btn-outline"
+            >Buy Basic</a
+          >
+        </div>
+
+        <div class="card">
+          <div>
+            <h3>🟡 Medium</h3>
+            <div class="price">₹1000</div>
+            <ul>
+              <li>Everything in Basic</li>
+              <li>JavaScript Interactivity</li>
+              <li>Multiple Pages (Up to 4)</li>
+              <li>Modern CSS Animations</li>
+            </ul>
+            <div class="addon">
+              <label
+                style="
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                "
+              >
+                <input
+                  type="checkbox"
+                  onchange="updateTotal('medium', 1000, 300)"
+                />
+                Add Documentation (+₹300)
+              </label>
+            </div>
+            <div class="total" id="total-medium">Total: ₹1000</div>
+          </div>
+          <a
+            href="https://www.instagram.com/codexa652/"
+            target="_blank"
+            class="btn btn-outline"
+            >Buy Medium</a
+          >
+        </div>
+
+        <div class="card highlight">
+          <div>
+            <h3>🟣 Advance 🔥</h3>
+            <div class="price">₹2500</div>
+            <ul>
+              <li>Everything in Medium</li>
+              <li>Firebase Integration</li>
+              <li>Working Login & Signup</li>
+              <li>Cloud Database Storage</li>
+            </ul>
+            <div class="addon" style="color: var(--secondary)">
+              <strong>✓ Documentation Included Free</strong>
+            </div>
+            <div class="total">Total: ₹2500</div>
+          </div>
+          <a
+            href="https://www.instagram.com/codexa652/"
+            target="_blank"
+            class="btn btn-primary"
+            >Secure Advance</a
+          >
+        </div>
+      </div>
+    </section>
+    <div class="text-center flex-column" style="display: flex; align-items: center">
+      <div style="text-align: center; margin: 20px 0 60px 0; padding: 0 8%;">
+      <a href="https://codexa652.github.io/iphone-website/" target="_blank" class="btn btn-outline" style="font-size: 18px; padding: 15px 40px;">IPHONE Website</a>
+    </div>
+    <div style="text-align: center; margin: 20px 0 60px 0; padding: 0 8%;">
+      <a href="https://codexa652.github.io/clothes-website/" target="_blank" class="btn btn-outline" style="font-size: 18px; padding: 15px 40px;">Clothes Website</a>
+    </div>
+
+    <div style="text-align: center; margin: 20px 0 60px 0; padding: 0 8%;">
+      <a href="https://codexa652.github.io/watch-website/" target="_blank" class="btn btn-outline" style="font-size: 18px; padding: 15px 40px;">Watch Website</a>
+    </div>
+    </div>
+    <section id="custom">
+      <div class="custom-banner">
+        <div class="custom-banner-text">
+          <h2>💼 Need a Fully Custom Project?</h2>
+          <p>
+            Have a unique idea or specific college guidelines? Let me build a
+            powerful interactive web app tailored for final year submissions
+            without the headache of complex backend servers.
+          </p>
+          <ul>
+            <li>Your Unique Idea & Features</li>
+            <li>Full Custom UI/UX Design</li>
+            <li>Vanilla JS + Firebase Data Structure</li>
+            <li>1-on-1 Code Explanation for Vivas</li>
+          </ul>
+        </div>
+
+        <div class="form-container">
+          <form id="projectForm" onsubmit="submitForm(event)">
+            <div class="form-group">
+              <input
+                type="text"
+                id="clientName"
+                class="form-control"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="clientContact"
+                class="form-control"
+                placeholder="WhatsApp Number or Instagram ID"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <textarea
+                id="clientIdea"
+                class="form-control"
+                rows="4"
+                placeholder="Briefly describe your project idea..."
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              style="width: 100%; font-size: 18px"
+            >
+              Get Free Quote
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2 style="text-align: center; margin-bottom: 40px">
+        Frequently Asked Questions
+      </h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <strong>How will I receive the project?</strong>
+          Delivered securely via Google Drive or ZIP file directly to you.
+        </div>
+        <div class="faq-item">
+          <strong>Can I request small changes?</strong>
+          Yes, minor customizations are completely included.
+        </div>
+        <div class="faq-item">
+          <strong>Is the code beginner-friendly?</strong>
+          Yes, the code is clean, well-structured, and easy to explain during
+          vivas.
+        </div>
+        <div class="faq-item">
+          <strong>How fast is delivery?</strong>
+          Very fast! Send me a DM on Instagram for the quickest response.
+        </div>
+        <div class="faq-item">
+          <strong>Do you provide setup help?</strong>
+          Yes, step-by-step guidance is included, especially in the Advance
+          plan.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="urgency">
+        <h2>⏳ Limited Weekly Slots</h2>
+        <p style="color: #fff; opacity: 0.8">
+          I only accept limited custom project requests each week to maintain
+          premium quality.
+        </p>
+        <div class="countdown" id="countdown"></div>
+        <a
+          href="https://www.instagram.com/codexa652/"
+          target="_blank"
+          class="btn btn-primary"
+          style="margin-top: 30px"
+          >🚀 DM Before Slots Close</a
+        >
+      </div>
+    </section>
+
+    <footer class="footer">
+      GradeBoost Projects © 2026 | Score Higher. Stress Less.<br />
+      <span
+        style="font-size: 12px; margin-top: 10px; display: block; opacity: 0.6"
+        >Disclaimer: Projects are intended as study aids and reference materials
+        for academic learning.</span
+      >
+    </footer>
+
+    <a
+      href="https://www.instagram.com/codexa652/"
+      target="_blank"
+      class="floating-btn"
+      >💬 Instagram DM</a
+    >
+
+    <script>
+      /* Animated Counters */
+      function animateCounter(id, target) {
+        let count = 0;
+        const element = document.getElementById(id);
+        const interval = setInterval(() => {
+          count++;
+          element.innerText = count + "+";
+          if (count >= target) clearInterval(interval);
+        }, 20);
+      }
+      window.onload = () => {
+        animateCounter("counter1", 10);
+        // animateCounter("counter2", );
+      };
+
+      /* Pricing Toggle Logic */
+      function updateTotal(tier, basePrice, addonPrice) {
+        const checkbox = event.target;
+        const totalDisplay = document.getElementById(`total-${tier}`);
+
+        let finalPrice = basePrice;
+        if (checkbox.checked) {
+          finalPrice += addonPrice;
+        }
+
+        totalDisplay.innerText = `Total: ₹${finalPrice}`;
+      }
+
+      /* Custom Form Submission Logic */
+      function submitForm(event) {
+        event.preventDefault(); // Prevent page reload
+
+        // Get values from the form
+        const name = document.getElementById("clientName").value;
+        const contact = document.getElementById("clientContact").value;
+        const idea = document.getElementById("clientIdea").value;
+
+        // Format the message
+        const message = `Hi Codexa! I need a custom project.%0A%0A*Name:* ${name}%0A*Contact:* ${contact}%0A*Project Idea:* ${idea}`;
+
+        // Your WhatsApp Number (Include country code, no + or spaces. Example for India: 919876543210)
+        const yourWhatsAppNumber = "918097543333";
+
+        // Create WhatsApp API Link
+        const whatsappLink = `https://wa.me/${yourWhatsAppNumber}?text=${message}`;
+
+        // Open WhatsApp in a new tab
+        window.open(whatsappLink, "_blank");
+
+        // Reset the form
+        document.getElementById("projectForm").reset();
+      }
+
+      /* Countdown Timer */
+      const countdownEl = document.getElementById("countdown");
+      let deadline = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
+
+      setInterval(() => {
+        const now = new Date().getTime();
+        const diff = deadline - now;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        );
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        countdownEl.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+      }, 1000);
+    </script>
+  </body>
+</html>
